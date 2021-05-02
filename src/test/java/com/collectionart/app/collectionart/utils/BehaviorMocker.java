@@ -1,9 +1,9 @@
 package com.collectionart.app.collectionart.utils;
 
-public interface BehaviorMocker {
+public interface BehaviorMocker extends Resettable {
     MethodMocker get(String methodName);
 
-    void resetAll();
+    void reset();
 
     void reset(String methodName);
 }

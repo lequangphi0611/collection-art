@@ -84,7 +84,8 @@ public class QueryMocker extends SimpleBehaviorMocker implements Query {
 
     @Override
     public Query setParameter(int position, Object value) {
-        return null;
+        call("setParameter", position, value);
+        return this;
     }
 
     @Override

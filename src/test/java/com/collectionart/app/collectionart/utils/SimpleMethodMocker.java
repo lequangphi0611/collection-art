@@ -2,10 +2,7 @@ package com.collectionart.app.collectionart.utils;
 
 import org.assertj.core.util.Arrays;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class SimpleMethodMocker implements MethodMocker {
 
@@ -15,8 +12,11 @@ public class SimpleMethodMocker implements MethodMocker {
 
     private List<Object[]> paramsCalled;
 
-    public SimpleMethodMocker() {
+    private final String methodName;
+
+    public SimpleMethodMocker(final String methodName) {
         this.paramsCalled = new ArrayList<>();
+        this.methodName = methodName;
     }
 
     protected void call(Object... args) {
@@ -50,12 +50,17 @@ public class SimpleMethodMocker implements MethodMocker {
     }
 
     @Override
-    public Iterable<Object[]> callWithIterator() {
+    public Iterator<Object[]> callWithIterator() {
         if(isCalled()) {
-            return (Iterable<Object[]>) this.paramsCalled.iterator();
+            return this.paramsCalled.iterator();
         }
 
         throw new MethodWasNotCallException("Method was not called !");
+    }
+
+    @Override
+    public String getMethodName() {
+        return this.methodName;
     }
 
 }

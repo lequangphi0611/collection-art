@@ -7,4 +7,8 @@ public final class ArrayUtils {
     public static String[] emptyStrings() {
         return EMPTY_STRING;
     }
+
+    public static Object[] objects(Object... objects) {
+        return objects;
+    }
 }

@@ -37,4 +37,16 @@ public final class TestUtils extends Assertions {
         assertDeepEquals(expected, actual);
     }
 
+    public static void assertCallTime(MethodMocker mocker, int time) {
+        if(time != mocker.getCalledTime()) {
+            throw new AssertionFailedError("Method [" + mocker.getMethodName() + "] call with " + mocker.getCalledTime() + " not be " + time, time, mocker.getCalledTime());
+        }
+    }
+
+    public static void assertLength(CharSequence charSequence, int length) {
+        if(charSequence.length() != length) {
+            throw new AssertionFailedError("Length should be " + length, length, charSequence.length());
+        }
+    }
+
 }

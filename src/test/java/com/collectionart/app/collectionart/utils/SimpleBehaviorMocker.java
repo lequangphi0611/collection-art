@@ -14,13 +14,13 @@ public class SimpleBehaviorMocker implements BehaviorMocker {
         this.methods = new HashMap<>();
     }
 
-    public MethodMocker getOrCreateMethodMocker(String methodName) {
+    private MethodMocker getOrCreateMethodMocker(String methodName) {
         MethodMocker method = this.methods.get(methodName);
         if(Objects.nonNull(method)) {
             return method;
         }
 
-        MethodMocker newMethod = new SimpleMethodMocker();
+        MethodMocker newMethod = new SimpleMethodMocker(methodName);
         this.methods.put(methodName, newMethod);
         return newMethod;
     }
@@ -47,7 +47,7 @@ public class SimpleBehaviorMocker implements BehaviorMocker {
     }
 
     @Override
-    public void resetAll() {
+    public void reset() {
         this.methods.forEach((String methodName, MethodMocker methodMocker) -> {
             methodMocker.reset();
         });
