@@ -29,7 +29,7 @@ public class AuthorityEntity implements Authority {
     )
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authorities")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = AuthorityConstants.ENTITY_AUTHORITY_MAPPED_COLUMN_NAME)
     private Set<RoleEntity> roles;
 
 }

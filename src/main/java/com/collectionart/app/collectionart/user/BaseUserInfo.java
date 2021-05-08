@@ -6,12 +6,12 @@ import java.time.LocalDate;
 
 public interface BaseUserInfo extends EmailAble {
 
-    String getFistName();
+    String getFirstName();
 
     String getLastName();
 
     LocalDate getBirthDay();
 
-    Avatar getAvatar();
+    String getAvatar();
 
 }

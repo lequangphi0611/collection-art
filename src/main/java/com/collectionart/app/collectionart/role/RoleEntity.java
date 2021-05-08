@@ -2,12 +2,14 @@ package com.collectionart.app.collectionart.role;
 
 import com.collectionart.app.collectionart.auth.AuthorityEntity;
 import com.collectionart.app.collectionart.entity.UuidEntity;
+import com.collectionart.app.collectionart.user.UserEntity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -15,18 +17,21 @@ import java.util.Set;
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper = false)
-@Table(name = "role")
+@Table(name = RoleConstants.ENTITY_TABLE_NAME)
 public class RoleEntity extends UuidEntity implements Role {
 
+    @Column(length = 50)
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "role_authority",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "authority_name")
+            name = RoleConstants.JOIN_TABLE_AUTHORITIES_TABLE_NAME,
+            joinColumns = @JoinColumn(name = RoleConstants.JOIN_TABLE_AUTHORITIES_JOIN_COLUMN),
+            inverseJoinColumns = @JoinColumn(name = RoleConstants.JOIN_TABLE_AUTHORITIES_INVERSE_COLUMN)
     )
-    @EqualsAndHashCode.Exclude
-    private Set<AuthorityEntity> authorities;
+    private Collection<AuthorityEntity> authorities;
+
+    @ManyToMany(mappedBy = RoleConstants.JOIN_TABLE_USERS_MAPPED_BY)
+    private Collection<UserEntity> users;
 
 }

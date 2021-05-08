@@ -2,7 +2,7 @@ package com.collectionart.app.collectionart.email;
 
 public interface Email {
 
-    String getEmail();
+    String getValue();
 
     boolean isAvailable();
 
