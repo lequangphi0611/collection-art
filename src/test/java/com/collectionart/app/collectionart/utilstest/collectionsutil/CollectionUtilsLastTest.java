@@ -1,4 +1,4 @@
-package com.collectionart.app.collectionart.utilstest;
+package com.collectionart.app.collectionart.utilstest.collectionsutil;
 
 import com.collectionart.app.collectionart.utils.CollectionUtils;
 import com.collectionart.app.collectionart.utils.TestUtils;

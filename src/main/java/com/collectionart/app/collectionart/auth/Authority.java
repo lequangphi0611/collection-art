@@ -1,19 +1,7 @@
 package com.collectionart.app.collectionart.auth;
 
-public enum Authority implements IAuthority {
+public interface Authority {
 
-    EMPLOY_MODIFY("E_M"),
+    String getName();
 
-    EMPLOY_READ("E_R");
-
-    private final String code;
-
-    Authority(String code) {
-        this.code = code;
-    }
-
-    @Override
-    public String getCode() {
-        return code;
-    }
 }

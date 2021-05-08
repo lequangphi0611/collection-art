@@ -24,7 +24,7 @@ public class UuidEntityDBTest {
 
     @Entity
     @Table(name="uuid_entity_impl")
-    private class UuidEntityImpl extends UuidEntity {
+    private static class UuidEntityImpl extends UuidEntity {
 
     }
 
@@ -45,7 +45,7 @@ public class UuidEntityDBTest {
             }
             TestUtils.assertTrue(true);
         } catch (EntityExistsException e) {
-            TestUtils.assertTrue(false);
+            TestUtils.fail();
         }
     }
 

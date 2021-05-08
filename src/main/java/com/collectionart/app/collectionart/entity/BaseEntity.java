@@ -1,5 +1,7 @@
 package com.collectionart.app.collectionart.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
@@ -7,22 +9,15 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
-public class BaseEntity implements UpdatedTimeModel {
+@Getter
+@Setter
+public abstract class BaseEntity implements UpdatedTimeModel {
 
     @CreationTimestamp
-    private LocalDateTime lastUpdatedTime = null;
+    private LocalDateTime lastUpdatedTime;
 
     @CreationTimestamp
     @Column(updatable = false)
-    private LocalDateTime createdTime = null;
+    private LocalDateTime createdTime;
 
-    @Override
-    public LocalDateTime getLastUpdatedTime() {
-        return lastUpdatedTime;
-    }
-
-    @Override
-    public LocalDateTime getCreatedTime() {
-        return createdTime;
-    }
 }

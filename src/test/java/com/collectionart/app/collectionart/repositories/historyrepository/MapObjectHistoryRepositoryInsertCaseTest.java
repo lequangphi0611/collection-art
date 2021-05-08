@@ -31,6 +31,9 @@ public class MapObjectHistoryRepositoryInsertCaseTest {
     @Qualifier("historyRepository")
     private HistoryRepository<Map<String, Object>> historyRepository;
 
+    public MapObjectHistoryRepositoryInsertCaseTest() {
+    }
+
     @Test
     public void testInsertCorrect() {
         Map<String, Object> map = new HashMap<>();
@@ -43,21 +46,31 @@ public class MapObjectHistoryRepositoryInsertCaseTest {
 
         TestHistoryEntity entity = entityManager.find(TestHistoryEntity.class, "001");
         TestUtils.assertEquals(entity.getId(), "001");
-        TestUtils.assertEquals(entity.getBeforeName(), null);
+        TestUtils.assertNull(entity.getBeforeName());
         TestUtils.assertEquals(entity.getAfterName(), "Quang Phi");
-        TestUtils.assertEquals(entity.getBeforeAge(), null);
+        TestUtils.assertNull(entity.getBeforeAge());
         TestUtils.assertEquals(entity.getAfterAge(), 18);
         TestUtils.assertEquals(entity.getLastUpdatedTime(), LocalDateTime.of(2021, 9, 9, 10, 10));
         TestUtils.assertEquals(entity.getCreatedTime(), LocalDateTime.of(2021, 9, 9, 10, 10));
     }
 
     @Test
+    public void testInsertNullMap() {
+        try {
+            historyRepository.insertHistory(null);
+            TestUtils.fail("Should be throw exception");
+        } catch (ArgumentInCorrectException exception) {
+            TestUtils.assertEquals("[beforeHistory] and [afterHistory] can not be null or empty!", exception.getMessage());
+        }
+    }
+
+    @Test
     public void testInsertEmptyMap() {
         try {
             historyRepository.insertHistory(Collections.emptyMap());
-            TestUtils.fail("Should throw a exception");
-        } catch (ArgumentInCorrectException e) {
-            TestUtils.assertEquals(e.getMessage(), "entity is required !");
+            TestUtils.fail("Should be throw exception");
+        } catch (ArgumentInCorrectException exception) {
+            TestUtils.assertEquals("[beforeHistory] and [afterHistory] can not be null or empty!", exception.getMessage());
         }
     }
 

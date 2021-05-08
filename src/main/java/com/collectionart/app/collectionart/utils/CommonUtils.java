@@ -12,4 +12,8 @@ public final class CommonUtils {
         }
     }
 
+    public static <T> T defaults(T target, T defaultValue) {
+        return target == null ? defaultValue : target;
+    }
+
 }

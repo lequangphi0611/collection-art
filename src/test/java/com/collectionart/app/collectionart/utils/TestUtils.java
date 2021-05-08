@@ -12,23 +12,15 @@ import java.util.Optional;
 
 public final class TestUtils extends Assertions {
 
-    public static <E> void assertEmpty(Collection<E> collection) {
-        if(collection == null || !collection.isEmpty()) {
-            throw new ComparisonFailure("Must be empty", "size = 0", collection == null ? null : "size= " + collection.size());
+    public static void assertDeepEquals(Object expected, Object actual) {
+        if(!Objects.deepEquals(expected, actual)) {
+            throw new AssertionFailedError("Not equals", expected, actual);
         }
     }
 
-    public static <T> void assertEmpty(Optional<T> optional) {
-        if(optional == null || optional.isPresent()) {
-            throw new ComparisonFailure("Must be empty", "Optional.empty", optional == null ? null  : optional.toString());
-        }
-    }
-
-    public static void assertDeepEquals(Object[] expected, Object[] actual) {
+    public static void assertDeepEquals(Object[] actual, Object[] expected) {
         for(int index = 0; index < expected.length; index++) {
-            if(!Objects.deepEquals(actual[index], expected[index])) {
-                throw new AssertionFailedError("Not equals", Arrays.toString(expected), Arrays.toString(actual));
-            }
+            assertDeepEquals(expected[index], actual[index]);
         }
     }
 
