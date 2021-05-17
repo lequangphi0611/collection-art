@@ -10,4 +10,6 @@ public final class UserConstants {
 
     public final static String ROLE_ID = "role_id";
 
+    public final static String EMAIL_ID = "email_id";
+
 }

@@ -24,7 +24,7 @@ public class EmailEntity implements Email, IdObject<Integer> {
     @GeneratedValue
     private Integer id;
 
-    @Column(length = 20, unique = true)
+    @Column(unique = true)
     private String value;
 
     @ColumnDefault(value = "0")

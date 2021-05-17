@@ -8,4 +8,6 @@ public final class SqlConstants {
 
     public static final String VALUES = "VALUES";
 
+    public static final String ALIAS = "AS";
+
 }

@@ -46,6 +46,6 @@ public class UserEntity extends UserAuditEntity implements User {
     private Collection<RoleEntity> roles;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = EmailConstants.EMAIL, referencedColumnName = EmailConstants.ID)
+    @JoinColumn(name = UserConstants.EMAIL_ID, referencedColumnName = EmailConstants.ID)
     private EmailEntity email;
 }

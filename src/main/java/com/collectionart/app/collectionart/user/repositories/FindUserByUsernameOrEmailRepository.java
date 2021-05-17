@@ -1,12 +1,11 @@
 package com.collectionart.app.collectionart.user.repositories;
 
-import com.collectionart.app.collectionart.common.mapper.Mapper;
-import com.collectionart.app.collectionart.user.UserEntity;
+import com.collectionart.app.collectionart.user.User;
+
+import java.util.Optional;
 
 public interface FindUserByUsernameOrEmailRepository {
 
-    UserEntity findByUsernameOrEmail(String usernameOrEmail);
-
-    <T> T findByUsernameOrEmail(String usernameOrEmail, Mapper<T, UserEntity> mapper);
+    <S extends User> Optional<S> findByUsernameOrEmail(String username, String email);
 
 }
